@@ -8,6 +8,9 @@ pub struct BasicServer;
 
 impl BasicServer {
     pub async fn run() -> Result<(), std::io::Error> {
+        // Initialize the tracing subscriber only once at application startup
+        tracing_subscriber::fmt::init();
+
         let ip = Ipv4Addr::new(0, 0, 0, 0);
         let port = 8000;
         let addr = SocketAddrV4::new(ip, port);
